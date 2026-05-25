@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document confidentiel — RVO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── PASSWORD GATE ── */
+  #gate {
+    position: fixed;
+    inset: 0;
+    background: #0f1f3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+  }
+  #gate.unlocking { opacity: 0; pointer-events: none; }
+  .gate-card {
+    background: #1a3260;
+    border: 1px solid rgba(212,130,10,0.3);
+    border-radius: 16px;
+    padding: 2.5rem 2.75rem;
+    width: 100%;
+    max-width: 380px;
+    margin: 1rem;
+    text-align: center;
+  }
+  .gate-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #d4820a;
+    margin-bottom: 1rem;
+  }
+  .gate-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+  }
+  .gate-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 2rem;
+  }
+  .gate-input-wrap { position: relative; margin-bottom: 12px; }
+  #pwd {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: #fff;
+    outline: none;
+    text-align: center;
+    letter-spacing: 0.1em;
+    transition: border-color 0.2s;
+  }
+  #pwd::placeholder { color: rgba(255,255,255,0.25); letter-spacing: 0; }
+  #pwd:focus { border-color: rgba(212,130,10,0.6); }
+  #pwd.error { border-color: #c0432a; animation: shake 0.3s ease; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+  #gate-btn {
+    width: 100%;
+    background: #d4820a;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  #gate-btn:hover { background: #b8700a; }
+  #gate-btn:active { transform: scale(0.98); }
+  #gate-error {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #f09595;
+    margin-top: 10px;
+    min-height: 18px;
+  }
+  .gate-lock {
+    font-size: 28px;
+    margin-bottom: 1.25rem;
+    opacity: 0.7;
+  }
+
+  /* ── MAIN CONTENT (hidden until unlocked) ── */
+  #content { display: none; }
+
+  /* ── REST OF STYLES ── */
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1a3260;
+    --slate: #374b6e;
+    --blue-light: #e8edf7;
+    --blue-xlight: #f3f6fc;
+    --amber: #d4820a;
+    --amber-light: #fef3dc;
+    --amber-xlight: #fffaf0;
+    --teal: #0e7c6e;
+    --teal-light: #e0f5f1;
+    --coral: #c0432a;
+    --coral-light: #fdeee9;
+    --muted: #6b7a96;
+    --border: #dce3ef;
+    --bg: #f7f9fc;
+    --white: #ffffff;
+    --text: #1a2540;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+  nav { position: sticky; top: 0; background: var(--navy); z-index: 100; padding: 0 2rem; display: flex; align-items: center; gap: 1.5rem; height: 52px; border-bottom: 2px solid var(--amber); }
+  nav .brand { font-family: 'Fraunces', serif; color: var(--white); font-size: 15px; font-weight: 600; letter-spacing: -0.02em; margin-right: auto; }
+  nav a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 13px; font-weight: 400; transition: color 0.2s; white-space: nowrap; }
+  nav a:hover { color: #fff; }
+  .hero { background: var(--navy); color: var(--white); padding: 4rem 2rem 3.5rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(212,130,10,0.08) 0%, transparent 60%); }
+  .hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: var(--amber); text-transform: uppercase; margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600; line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 1.2rem; }
+  .hero h1 em { font-style: italic; color: var(--amber); }
+  .hero p { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 600px; line-height: 1.7; }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2rem; }
+  .hero-pill { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 14px; font-size: 12px; color: rgba(255,255,255,0.7); }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 3.5rem 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+  .section-label { font-size: 10.5px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.5rem; }
+  .section-title { font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; letter-spacing: -0.025em; color: var(--navy); margin-bottom: 0.75rem; line-height: 1.2; }
+  .section-intro { color: var(--muted); font-size: 14.5px; max-width: 600px; margin-bottom: 2rem; }
+  .people-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .person-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem 1.1rem; display: flex; align-items: flex-start; gap: 10px; }
+  .person-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; flex-shrink: 0; }
+  .person-name { font-size: 13.5px; font-weight: 500; color: var(--text); }
+  .person-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10.5px; font-weight: 500; margin-top: 5px; }
+  .badge-navy { background: var(--blue-light); color: var(--navy-mid); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-teal { background: var(--teal-light); color: var(--teal); }
+  .badge-new { background: #f0fdf4; color: #166534; border: 1px dashed #86efac; }
+  .group-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 1.5rem 0 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+  .clinic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 1.5rem; }
+  .clinic-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem 1.25rem; transition: box-shadow 0.2s, border-color 0.2s; }
+  .clinic-card:hover { border-color: #bdc9e0; box-shadow: 0 4px 16px rgba(15,31,61,0.06); }
+  .clinic-entity { font-size: 11px; font-weight: 500; letter-spacing: 0.05em; color: var(--amber); text-transform: uppercase; margin-bottom: 4px; }
+  .clinic-name { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.3; }
+  .clinic-locations { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+  .ownership-bar { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
+  .ownership-label { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+  .ownership-row { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text); margin-bottom: 3px; }
+  .ownership-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .dot-jf { background: var(--navy); }
+  .dot-partner { background: var(--amber); }
+  .ownership-pct { font-weight: 500; margin-left: auto; color: var(--slate); }
+  .entity-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 1.5rem; }
+  .entity-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.3rem 1.4rem; border-left: 3px solid var(--navy); }
+  .entity-type { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .entity-name { font-family: 'Fraunces', serif; font-size: 15.5px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .entity-desc { font-size: 13.5px; color: #4a5670; line-height: 1.6; }
+  .challenge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 1.5rem; }
+  .challenge-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.1rem 1.2rem; }
+  .challenge-icon { font-size: 18px; margin-bottom: 8px; }
+  .challenge-title { font-size: 13.5px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .challenge-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+  .role-columns { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 1.5rem; }
+  .role-group { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.3rem 1.4rem; }
+  .role-group-title { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .role-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #374060; margin-bottom: 7px; line-height: 1.5; }
+  .role-item::before { content: '→'; color: var(--muted); font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+  .role-group.highlight { border-color: var(--amber); background: var(--amber-xlight); }
+  .role-group.highlight .role-group-title { color: #9a5a00; }
+  .role-group.highlight .role-item::before { color: var(--amber); }
+  .resp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 1.5rem; }
+  @media (max-width: 640px) { .resp-grid { grid-template-columns: 1fr; } }
+  .resp-card { border-radius: var(--radius); padding: 1.3rem 1.4rem; border: 1px solid var(--border); }
+  .resp-card.ops { background: var(--teal-light); border-color: #9de0d4; }
+  .resp-card.finance { background: var(--amber-xlight); border-color: #f0c870; }
+  .resp-card.cpa { background: var(--blue-xlight); border-color: #c5d2e8; }
+  .resp-card-icon { font-size: 22px; margin-bottom: 10px; }
+  .resp-card-title { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; margin-bottom: 12px; color: var(--navy); }
+  .resp-item { font-size: 12.5px; color: #374060; margin-bottom: 5px; line-height: 1.5; display: flex; gap: 6px; }
+  .resp-item::before { content: '·'; font-weight: bold; flex-shrink: 0; color: var(--slate); }
+  .callout { background: var(--navy); color: rgba(255,255,255,0.85); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-top: 2rem; position: relative; overflow: hidden; }
+  .callout::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 100%; background: linear-gradient(90deg, transparent, rgba(212,130,10,0.07)); }
+  .callout p { font-size: 14px; line-height: 1.7; }
+  .callout strong { color: var(--white); font-weight: 500; }
+  .profile-box { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); border-radius: var(--radius); padding: 1.75rem 2rem; color: var(--white); margin-bottom: 2rem; border-left: 4px solid var(--amber); }
+  .profile-box p { font-size: 14.5px; color: rgba(255,255,255,0.75); line-height: 1.7; }
+  .profile-box strong { color: var(--white); font-weight: 500; }
+  footer { background: var(--navy); color: rgba(255,255,255,0.4); text-align: center; padding: 1.5rem; font-size: 12px; }
+  .note { background: var(--coral-light); border: 1px solid #f0b8a8; border-radius: var(--radius-sm); padding: 0.9rem 1.1rem; font-size: 13px; color: #7a2a1a; margin-top: 1rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-lock">🔒</div>
+    <div class="gate-eyebrow">Document confidentiel</div>
+    <div class="gate-title">Accès restreint</div>
+    <div class="gate-sub">Réseau Vos Oreilles Audioprothésistes</div>
+    <div class="gate-input-wrap">
+      <input type="password" id="pwd" placeholder="Entrez le code d'accès" autocomplete="off" />
+    </div>
+    <button id="gate-btn" onclick="unlock()">Accéder au document</button>
+    <div id="gate-error"></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+<nav>
+  <span class="brand">RVO &amp; Entités</span>
+  <a href="#structure">Structure</a>
+  <a href="#reseau">Réseau</a>
+  <a href="#entites">Entités</a>
+  <a href="#operations">Opérations</a>
+  <a href="#poste">Poste</a>
+  <a href="#responsabilites">Rôles</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Document interne — confidentiel</div>
+    <h1>Structure organisationnelle<br><em>&amp; plan de croissance</em></h1>
+    <p>Portrait global de nos entités, de notre réseau clinique, et de la personne qu'on cherche à bâtir en comptabilité / contrôle pour supporter notre prochaine phase.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">5 entités RVO actives</span>
+      <span class="hero-pill">Clinique ORL de Montréal</span>
+      <span class="hero-pill">3 holdings</span>
+      <span class="hero-pill">Poste à créer — contrôle interne</span>
+    </div>
+  </div>
+</div>
+
+<section id="structure">
+<div class="container">
+  <div class="section-label">01 — Structure actuelle</div>
+  <h2 class="section-title">Direction &amp; équipe</h2>
+  <p class="section-intro">Les cadres, la direction opérationnelle, les professionnels externes, et le poste clé qu'on s'apprête à créer.</p>
+  <div class="group-label">Propriétaires</div>
+  <div class="people-grid">
+    <div class="person-card">
+      <div class="person-avatar" style="background:#e8edf7;color:#1a3260;">FG</div>
+      <div><div class="person-name">Frédérick Gougeon</div><div class="person-role">Propriétaire</div><div class="badge badge-navy">Co-fondateur</div></div>
+    </div>
+    <div class="person-card">
+      <div class="person-avatar" style="background:#e8edf7;color:#1a3260;">JD</div>
+      <div><div class="person-name">Judith Dupras</div><div class="person-role">Propriétaire</div><div class="badge badge-navy">Co-fondateur</div></div>
+    </div>
+  </div>
+  <div class="group-label">Direction des opérations</div>
+  <div class="people-grid">
+    <div class="person-card">
+      <div class="person-avatar" style="background:#e0f5f1;color:#0e7c6e;">S</div>
+      <div><div class="person-name">Sandra</div><div class="person-role">Direction opérations</div><div class="badge badge-teal">Terrain &amp; équipes</div></div>
+    </div>
+    <div class="person-card">
+      <div class="person-avatar" style="background:#e0f5f1;color:#0e7c6e;">É</div>
+      <div><div class="person-name">Élise</div><div class="person-role">Direction opérations</div><div class="badge badge-teal">Terrain &amp; équipes</div></div>
+    </div>
+  </div>
+  <div class="group-label">Professionnels externes</div>
+  <div class="people-grid">
+    <div class="person-card">
+      <div class="person-avatar" style="background:#fef3dc;color:#8a5400;">CPA</div>
+      <div><div class="person-name">CPA externe</div><div class="person-role">À trouver</div><div class="badge badge-amber">Supervision / états financiers</div></div>
+    </div>
+    <div class="person-card">
+      <div class="person-avatar" style="background:#fef3dc;color:#8a5400;">SPL</div>
+      <div><div class="person-name">Simon-Pierre Lauzon</div><div class="person-role">Fiscaliste externe</div><div class="badge badge-amber">Fiscalité</div></div>
+    </div>
+    <div class="person-card">
+      <div class="person-avatar" style="background:#fef3dc;color:#8a5400;">SL</div>
+      <div><div class="person-name">Sylvain Lauzon</div><div class="person-role">Avocat corporatif externe</div><div class="badge badge-amber">Légal corpo</div></div>
+    </div>
+  </div>
+  <div class="group-label">Poste à créer</div>
+  <div class="people-grid">
+    <div class="person-card" style="border-color:#86efac;background:#f0fdf4;">
+      <div class="person-avatar" style="background:#bbf7d0;color:#166534;">TC</div>
+      <div><div class="person-name">Technicienne comptable</div><div class="person-role">Contrôleur interne</div><div class="badge badge-new">À recruter</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="reseau">
+<div class="container">
+  <div class="section-label">02 — Réseau clinique</div>
+  <h2 class="section-title">Réseau Vos Oreilles Audioprothésistes</h2>
+  <p class="section-intro">Cinq entités RVO couvrant la grande région de Montréal, chacune avec sa propre structure d'actionnariat.</p>
+  <div class="clinic-grid">
+    <div class="clinic-card">
+      <div class="clinic-entity">RVO Montréal</div>
+      <div class="clinic-name">Montréal — 5 cliniques</div>
+      <div class="clinic-locations">Ville Mont-Royal<br>Vieux-Port<br>Roxboro / Pierrefonds<br>Westmount<br>St-Hubert</div>
+      <div class="ownership-bar">
+        <div class="ownership-label">Actionnariat</div>
+        <div class="ownership-row"><span class="ownership-dot dot-jf"></span>Judith &amp; Frédérick<span class="ownership-pct">50 % / 50 %</span></div>
+      </div>
+    </div>
+    <div class="clinic-card">
+      <div class="clinic-entity">RVO Beloeil</div>
+      <div class="clinic-name">Beloeil</div>
+      <div class="clinic-locations">Beloeil</div>
+      <div class="ownership-bar">
+        <div class="ownership-label">Actionnariat</div>
+        <div class="ownership-row"><span class="ownership-dot dot-jf"></span>Judith &amp; Frédérick<span class="ownership-pct">70 %</span></div>
+        <div class="ownership-row"><span class="ownership-dot dot-partner"></span>Mohamed Terki<span class="ownership-pct">30 %</span></div>
+      </div>
+    </div>
+    <div class="clinic-card">
+      <div class="clinic-entity">RVO Île-Perrot</div>
+      <div class="clinic-name">Île-Perrot</div>
+      <div class="clinic-locations">Île-Perrot</div>
+      <div class="ownership-bar">
+        <div class="ownership-label">Actionnariat</div>
+        <div class="ownership-row"><span class="ownership-dot dot-jf"></span>Judith &amp; Frédérick<span class="ownership-pct">50 %</span></div>
+        <div class="ownership-row"><span class="ownership-dot dot-partner"></span>Faouzi Lucien<span class="ownership-pct">50 %</span></div>
+      </div>
+    </div>
+    <div class="clinic-card">
+      <div class="clinic-entity">RVO Lachine</div>
+      <div class="clinic-name">Lachine</div>
+      <div class="clinic-locations">Lachine</div>
+      <div class="ownership-bar">
+        <div class="ownership-label">Actionnariat</div>
+        <div class="ownership-row"><span class="ownership-dot dot-jf"></span>Judith &amp; Frédérick<span class="ownership-pct">50 %</span></div>
+        <div class="ownership-row"><span class="ownership-dot dot-partner"></span>Anna Vandalovski<span class="ownership-pct">50 %</span></div>
+      </div>
+    </div>
+    <div class="clinic-card">
+      <div class="clinic-entity">RVO Bromont</div>
+      <div class="clinic-name">Bromont</div>
+      <div class="clinic-locations">Bromont</div>
+      <div class="ownership-bar">
+        <div class="ownership-label">Actionnariat</div>
+        <div class="ownership-row"><span class="ownership-dot dot-jf"></span>Judith &amp; Frédérick<span class="ownership-pct">66 %</span></div>
+        <div class="ownership-row"><span class="ownership-dot dot-partner"></span>Guillaume Richard<span class="ownership-pct">34 %</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="entites">
+<div class="container">
+  <div class="section-label">03 — Autres entités</div>
+  <h2 class="section-title">Entités complémentaires &amp; holdings</h2>
+  <p class="section-intro">Au-delà du réseau RVO, plusieurs entités corporatives servent des rôles spécifiques.</p>
+  <div class="entity-grid">
+    <div class="entity-card">
+      <div class="entity-type">Clinique spécialisée</div>
+      <div class="entity-name">Clinique Auditive<br>Ville Mont-Royal Inc.</div>
+      <div class="entity-desc">Judith &amp; Frédérick (100 %). Location de locaux à des professionnels pour respecter les contraintes déontologiques des ordres professionnels.</div>
+    </div>
+    <div class="entity-card" style="border-left-color:var(--amber);">
+      <div class="entity-type">Clinique ORL</div>
+      <div class="entity-name">Clinique ORL<br>de Montréal</div>
+      <div class="entity-desc">Judith 25 % · Frédérick 25 %<br>Dr Badr Ibrahim 25 %<br>Dr Joe Saliba 25 %<br>Dr Ilyes Berania 25 %</div>
+    </div>
+    <div class="entity-card" style="border-left-color:var(--teal);">
+      <div class="entity-type">Holdings</div>
+      <div class="entity-name">Structures de gestion</div>
+      <div class="entity-desc">· Gestion Gougeon Dupras<br>· Gestion Frédérick Gougeon<br>· Gestion Judith Dupras<br><br>Certaines participations sont détenues personnellement, d'autres via les holdings.</div>
+    </div>
+  </div>
+  <div class="note"><strong>Note du fiscaliste :</strong> Simon-Pierre souhaiterait éventuellement simplifier la structure — notamment en fusionnant potentiellement RVO Montréal et Gestion Gougeon Dupras.</div>
+</div>
+</section>
+
+<section id="operations">
+<div class="container">
+  <div class="section-label">04 — Réalité opérationnelle</div>
+  <h2 class="section-title">Les défis de la croissance</h2>
+  <p class="section-intro">À chaque acquisition ou ouverture de clinique, les mêmes dynamiques créent de la pression sur la structure financière.</p>
+  <div class="challenge-grid">
+    <div class="challenge-card"><div class="challenge-icon">🏗️</div><div class="challenge-title">Nouvelles cliniques sans marge</div><div class="challenge-desc">Les nouvelles entités n'ont pas encore leur marge de crédit propre et la trésorerie est serrée au départ.</div></div>
+    <div class="challenge-card"><div class="challenge-icon">🔄</div><div class="challenge-title">Avances intercompagnies</div><div class="challenge-desc">Une clinique paie pour une autre, des fonds sont avancés temporairement, des dépenses passent dans la mauvaise compagnie.</div></div>
+    <div class="challenge-card"><div class="challenge-icon">⚠️</div><div class="challenge-title">Chaos du passé</div><div class="challenge-desc">Avances oubliées, balances incorrectes, mauvaises écritures, montants mal classés, sommes qui disparaissaient des livres.</div></div>
+    <div class="challenge-card"><div class="challenge-icon">📊</div><div class="challenge-title">Qui doit quoi à qui?</div><div class="challenge-desc">Difficulté à obtenir rapidement un portrait clair des recevables et payables interentités.</div></div>
+  </div>
+  <div class="callout" style="margin-top:2rem;"><p>La solution : séparer clairement les <strong>opérations</strong> de la <strong>comptabilité / contrôle</strong>. Ces deux fonctions ne peuvent plus flotter entre plusieurs personnes.</p></div>
+</div>
+</section>
+
+<section id="poste">
+<div class="container">
+  <div class="section-label">05 — Poste à créer</div>
+  <h2 class="section-title">Technicienne comptable / Contrôleur interne</h2>
+  <div class="profile-box"><p>On ne cherche pas une technicienne comptable classique. On cherche un <strong>hybride</strong> entre une technicienne comptable senior, un assistant contrôleur, et une coordonnatrice financière interne — quelqu'un qui <strong>possède</strong> la structure financière du groupe.</p></div>
+  <div class="role-columns">
+    <div class="role-group highlight">
+      <div class="role-group-title">🏦 Intercompagnies (priorité #1)</div>
+      <div class="role-item">Suivi des avances entre entités</div>
+      <div class="role-item">Balances dues à / dues de</div>
+      <div class="role-item">Réconciliation mensuelle intercompagnies</div>
+      <div class="role-item">Validation des écritures</div>
+      <div class="role-item">Maintien d'une structure propre</div>
+      <div class="role-item">Suivi des remboursements internes</div>
+    </div>
+    <div class="role-group">
+      <div class="role-group-title">📒 Comptabilité / Tenue de livres</div>
+      <div class="role-item">Tenue de livres multi-entités</div>
+      <div class="role-item">Conciliations bancaires</div>
+      <div class="role-item">Comptes payables et recevables</div>
+      <div class="role-item">TPS / TVQ</div>
+      <div class="role-item">Suivi des pièces justificatives</div>
+      <div class="role-item">Fermeture mensuelle propre</div>
+    </div>
+    <div class="role-group">
+      <div class="role-group-title">👥 Paie / RH financier</div>
+      <div class="role-item">Validation des heures (Desjardins)</div>
+      <div class="role-item">Suivi vacances, maladies, ajustements</div>
+      <div class="role-item">Validation des déductions</div>
+      <div class="role-item">Suivi assurances collectives</div>
+      <div class="role-item">Validation T4 / RL-1</div>
+    </div>
+    <div class="role-group">
+      <div class="role-group-title">📈 Gestion / Contrôle</div>
+      <div class="role-item">Rapports mensuels par clinique</div>
+      <div class="role-item">Suivi rentabilité et cashflow</div>
+      <div class="role-item">Préparation documents banque / CPA</div>
+      <div class="role-item">Support acquisitions et intégrations</div>
+      <div class="role-item">Structurer les processus financiers</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="responsabilites">
+<div class="container">
+  <div class="section-label">06 — Division des rôles</div>
+  <h2 class="section-title">Qui fait quoi</h2>
+  <p class="section-intro">Une séparation nette entre trois zones de responsabilité pour que rien ne flotte.</p>
+  <div class="resp-grid">
+    <div class="resp-card ops">
+      <div class="resp-card-icon">🏥</div>
+      <div class="resp-card-title">Sandra &amp; Élise<br><small style="font-weight:300;font-size:13px;color:#0e5a50">Opérations terrain</small></div>
+      <div class="resp-item">Gestion des équipes</div>
+      <div class="resp-item">Gestion des horaires</div>
+      <div class="resp-item">Workflow des cliniques</div>
+      <div class="resp-item">Onboarding employés</div>
+      <div class="resp-item">Performance terrain</div>
+      <div class="resp-item">Coordination interne quotidienne</div>
+      <div style="margin-top:12px;font-size:12px;color:#0e5a50;font-style:italic;">Elles donnent l'information terrain.</div>
+    </div>
+    <div class="resp-card finance">
+      <div class="resp-card-icon">📊</div>
+      <div class="resp-card-title">Technicienne / Contrôleur<br><small style="font-weight:300;font-size:13px;color:#7a5800">Comptabilité &amp; contrôle</small></div>
+      <div class="resp-item">Valide, structure, réconcilie</div>
+      <div class="resp-item">Propriétaire de la structure financière</div>
+      <div class="resp-item">Intercompagnies propres en tout temps</div>
+      <div class="resp-item">Rapports mensuels par entité</div>
+      <div class="resp-item">Interface avec le CPA externe</div>
+      <div style="margin-top:12px;font-size:12px;color:#7a5800;font-style:italic;">Elle possède les chiffres.</div>
+    </div>
+    <div class="resp-card cpa">
+      <div class="resp-card-icon">🏛️</div>
+      <div class="resp-card-title">CPA externe<br><small style="font-weight:300;font-size:13px;color:#2a4a7a">Supervision &amp; conformité</small></div>
+      <div class="resp-item">Supervise et valide</div>
+      <div class="resp-item">Produit les états financiers</div>
+      <div class="resp-item">Gère la conformité fiscale</div>
+      <div class="resp-item">Challenge les chiffres</div>
+      <div class="resp-item">Aide pour financement et croissance</div>
+      <div style="margin-top:12px;font-size:12px;color:#2a4a7a;font-style:italic;">Pas le day-to-day opérationnel.</div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:2.5rem;"><p>L'objectif : scaler proprement à plusieurs cliniques avec une structure financière solide, des intercompagnies claires en tout temps, et une personne interne qui connaît les chiffres aussi bien que les propriétaires.</p></div>
+</div>
+</section>
+
+<footer>Document confidentiel — Réseau Vos Oreilles Audioprothésistes &amp; entités affiliées</footer>
+
+</div><!-- end #content -->
+
+<script>
+  const PASS = 'micacpa';
+  const KEY = 'rvo_unlocked';
+
+  function unlock() {
+    const val = document.getElementById('pwd').value.trim();
+    const err = document.getElementById('gate-error');
+    const inp = document.getElementById('pwd');
+    if (val === PASS) {
+      sessionStorage.setItem(KEY, '1');
+      document.getElementById('gate').classList.add('unlocking');
+      setTimeout(() => {
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+      }, 500);
+    } else {
+      err.textContent = 'Code incorrect. Veuillez réessayer.';
+      inp.classList.add('error');
+      inp.value = '';
+      setTimeout(() => inp.classList.remove('error'), 400);
+    }
+  }
+
+  document.getElementById('pwd').addEventListener('keydown', e => {
+    if (e.key === 'Enter') unlock();
+    document.getElementById('gate-error').textContent = '';
+  });
+
+  if (sessionStorage.getItem(KEY)) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+  }
+</script>
+</body>
+</html>
