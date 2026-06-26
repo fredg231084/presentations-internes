@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide ORL privé pour Google Ads | Binaural</title>
+<style>
+:root {
+  --bg:#f7f8fb; --card:#ffffff; --ink:#17202a; --muted:#5b6776;
+  --brand:#0f766e; --brand2:#115e59; --line:#e5e7eb;
+  --good:#e9f7ef; --goodInk:#166534; --risk:#fff1f2; --riskInk:#9f1239;
+  --blue:#eff6ff; --blueInk:#1d4ed8; --amber:#fffbeb; --amberInk:#92400e;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.5; }
+header { background:linear-gradient(135deg,#0f766e,#134e4a); color:white; padding:42px 24px; }
+.header-inner { max-width:1180px; margin:0 auto; }
+h1 { margin:0 0 10px; font-size:34px; letter-spacing:-.02em; }
+.subtitle { max-width:900px; font-size:18px; opacity:.93; }
+main { max-width:1180px; margin:0 auto; padding:24px; }
+.notice { background:var(--amber); color:var(--amberInk); border:1px solid #fde68a; border-radius:14px; padding:16px 18px; margin:20px 0; }
+.layout { display:grid; grid-template-columns:300px 1fr; gap:22px; align-items:start; }
+nav { position:sticky; top:12px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; max-height:calc(100vh - 24px); overflow:auto; }
+nav h2 { font-size:15px; margin:0 0 10px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
+nav a { display:block; text-decoration:none; color:var(--ink); padding:8px 10px; border-radius:10px; font-size:14px; }
+nav a:hover { background:#f1f5f9; color:var(--brand2); }
+.card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:24px; margin-bottom:20px; box-shadow:0 1px 2px rgba(15,23,42,.04); scroll-margin-top:24px; }
+.card h2 { margin:4px 0 12px; font-size:25px; letter-spacing:-.01em; }
+.card h3 { margin:18px 0 7px; font-size:15px; color:#334155; }
+.meta { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px; }
+.meta span { background:#f1f5f9; color:#334155; padding:6px 9px; border-radius:999px; font-size:13px; }
+.meta .value { background:#ecfeff; color:#155e75; font-weight:700; }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+ul { margin:8px 0 0; padding-left:20px; }
+p { margin:7px 0; }
+.small { color:var(--muted); font-size:13px; }
+.business { background:#f8fafc; border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin:16px 0; }
+.pills { display:flex; flex-wrap:wrap; gap:8px; margin:7px 0 10px; }
+.pill { padding:6px 9px; border-radius:999px; font-size:13px; border:1px solid transparent; }
+.good { background:var(--good); color:var(--goodInk); border-color:#bbf7d0; }
+.risky { background:var(--risk); color:var(--riskInk); border-color:#fecdd3; }
+.adbox { background:var(--blue); color:var(--blueInk); border:1px solid #bfdbfe; border-radius:14px; padding:14px 16px; margin-top:14px; }
+.anchor-line { display:flex; justify-content:space-between; gap:12px; color:var(--muted); font-size:12px; }
+.anchor-line a { color:var(--brand); text-decoration:none; font-weight:600; }
+.summary-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:18px; }
+.summary-card { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); border-radius:14px; padding:14px; }
+.summary-card strong { display:block; font-size:22px; }
+table { width:100%; border-collapse:collapse; margin:14px 0; font-size:14px; }
+th,td { border:1px solid var(--line); padding:10px; text-align:left; vertical-align:top; }
+th { background:#f8fafc; }
+@media (max-width:900px) {
+  .layout { grid-template-columns:1fr; }
+  nav { position:relative; top:auto; max-height:none; }
+  .grid,.summary-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<header id="top">
+  <div class="header-inner">
+    <h1>Guide ORL privé pour Google Ads</h1>
+    <p class="subtitle">Mini-wiki en français pour aider l’équipe Google Ads à comprendre les procédures ORL, les symptômes reliés, l’intention patient, la valeur business et les pièges de mots-clés trop informatifs.</p>
+    <div class="summary-grid">
+      <div class="summary-card"><strong>A+</strong> chirurgie/procédure probable</div>
+      <div class="summary-card"><strong>A</strong> consultation pouvant mener à chirurgie</div>
+      <div class="summary-card"><strong>B</strong> consultation/test diagnostic</div>
+      <div class="summary-card"><strong>C</strong> procédure mineure / plus bas ticket</div>
+      <div class="summary-card"><strong>D</strong> trop large / informatif</div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="notice">
+    <strong>Note stratégique Québec :</strong> la compétition en ORL privé est faible, donc l’objectif n’est pas de surenchérir agressivement. Le but est de capter une demande privée qualifiée, surtout les recherches qui peuvent mener à une chirurgie, une procédure ou une vraie consultation ORL spécialisée.
+  </div>
+
+  <section class="card">
+    <h2>Comment lire ce guide</h2>
+    <p><strong>Priorité :</strong> on ne cherche pas seulement des clics pas chers. On cherche des patients qui comprennent ou acceptent le privé, qui ont un vrai problème ORL, et qui peuvent générer une consultation, un test, une procédure ou une chirurgie.</p>
+    <table>
+      <tr><th>Niveau</th><th>Type de lead</th><th>Exemple</th><th>Budget</th></tr>
+      <tr><td>A+</td><td>Chirurgie/procédure probable</td><td>septoplastie privé, chirurgie sinus, UPPP, RFA thyroïde</td><td>Plus tolérant, mais contrôlé</td></tr>
+      <tr><td>A</td><td>Consultation pouvant mener à procédure</td><td>sinusite chronique, polypes nasaux, déviation cloison nasale</td><td>Bon budget avec landing page claire</td></tr>
+      <tr><td>B</td><td>Diagnostic / consultation spécialisée</td><td>ORL privé, échographie thyroïde, test allergie, spirométrie</td><td>Moyen</td></tr>
+      <tr><td>C</td><td>Procédure mineure / bas ticket</td><td>cérumen, grain de beauté, acrochordon, cicatrice</td><td>Budget séparé et limité</td></tr>
+      <tr><td>D</td><td>Symptôme trop large / info-only</td><td>nez bouché, sinusite, ronflement, oreille bouchée</td><td>Test seulement, strict</td></tr>
+    </table>
+    <p><strong>Règle simple :</strong> “sinusite chronique” est beaucoup plus intéressant que “sinusite”; “oreille bouchée chronique / trompe d’Eustache” est beaucoup plus intéressant que “oreille bouchée”; “chirurgie ronflement / UPPP” est beaucoup plus intéressant que “ronflement”.</p>
+  </section>
+
+  <div class="layout">
+    <nav>
+      <h2>Sections</h2>
+      <a href="#orl-prive">ORL privé / consultation rapide</a><a href="#septoplastie">Septoplastie / déviation de la cloison nasale</a><a href="#reduction-cornets">Réduction des cornets / turbinoplastie / coblation</a><a href="#septorhinoplastie-fonctionnelle">Septorhinoplastie fonctionnelle / valve nasale</a><a href="#chirurgie-sinus">Chirurgie des sinus / FESS</a><a href="#sinuplastie">Sinuplastie par ballonnet</a><a href="#clarifix">ClariFix / cryothérapie nasale</a><a href="#polypes-nasaux">Polypes nasaux / polypectomie</a><a href="#trompe-eustache">Dilatation de la trompe d’Eustache</a><a href="#myringotomie-tubes">Myringotomie / tubes transtympaniques</a><a href="#nettoyage-oreille">Nettoyage d’oreille sous microscope / bouchon de cérumen</a><a href="#thyroide">Nodule thyroïdien / échographie thyroïdienne</a><a href="#biopsie-thyroide">Biopsie / cytoponction thyroïdienne</a><a href="#radiofrequence-thyroide">Radiofréquence des nodules thyroïdiens</a><a href="#test-moleculaire-thyroide">Test moléculaire pour nodule/cancer de la thyroïde</a><a href="#grains-de-beaute">Grains de beauté / lésions cutanées / acrochordons</a><a href="#cicatrices">Révision de cicatrices</a><a href="#kystes-lipomes">Kystes, lipomes et masses superficielles</a><a href="#amygdales-adenoides">Amygdalectomie / adénoïdectomie</a><a href="#cordes-vocales">Cordes vocales / laryngoscopie / microchirurgie</a><a href="#parotide-glandes-salivaires">Parotide / glandes salivaires / masses cervicales</a><a href="#ronflement-apnee">Ronflement / apnée du sommeil / chirurgie</a><a href="#uppp">UPPP / chirurgie du voile du palais</a><a href="#allergies">Tests d’allergies / tests cutanés / épicutanés</a><a href="#spirometrie">Spirométrie / exploration fonctionnelle respiratoire</a>
+    </nav>
+    <div>
+      
+<section id="orl-prive" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#orl-prive</span></div>
+  <h2>ORL privé / consultation rapide</h2>
+  <div class="meta">
+    <span>Consultation privée</span>
+    <span>Consultation médicale spécialisée</span>
+    <span class="value">B — Valeur moyenne à élevée</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Problème ORL persistant</li><li>Patient tanné d’attendre au public</li><li>Besoin d’une évaluation spécialisée rapide</li><li>Deuxième opinion ORL</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Ce n’est pas une procédure spécifique; c’est la porte d’entrée vers une évaluation ORL privée.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très utile pour capter les gens qui savent déjà qu’ils veulent payer pour l’accès rapide. Le lead est souvent plus qualifié que les recherches de symptômes générales.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>B — Valeur moyenne à élevée</strong> — ±350$ consultation privée; peut mener vers tests, procédures ou chirurgie selon le cas.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">ORL privé Montréal</span><span class="pill good">consultation ORL privé</span><span class="pill good">rendez-vous ORL privé</span><span class="pill good">ORL sans attente</span><span class="pill good">ENT private Montreal</span><span class="pill good">private ENT consultation</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">ORL gratuit</span><span class="pill risky">ORL RAMQ</span><span class="pill risky">ORL public</span><span class="pill risky">urgence hôpital</span><span class="pill risky">comment voir un ORL gratuitement</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Accès rapide à une consultation ORL privée. Évaluation spécialisée, puis orientation vers le bon traitement si nécessaire.</p>
+    <h3>Note Google Ads</h3>
+    <p>Campagne de base à lancer. Ne pas promettre une chirurgie; vendre l’accès rapide à l’évaluation spécialisée.</p>
+  </div>
+</section>
+
+<section id="septoplastie" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#septoplastie</span></div>
+  <h2>Septoplastie / déviation de la cloison nasale</h2>
+  <div class="meta">
+    <span>Nez / respiration nasale</span>
+    <span>Consultation pouvant mener à chirurgie</span>
+    <span class="value">A+ — Très forte valeur</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Nez bouché chronique</li><li>Difficulté à respirer par le nez</li><li>Obstruction souvent pire d’un côté</li><li>Sommeil perturbé par la respiration nasale</li><li>Échec des traitements simples</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Déviation de la cloison nasale ou obstruction anatomique qui limite le passage de l’air.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Le patient qui cherche “septoplastie” ou “opération cloison nasale” est souvent déjà conscient qu’une chirurgie peut être nécessaire. Très bon potentiel pour convertir un patient public tanné d’attendre en privé.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A+ — Très forte valeur</strong> — ±350$ consultation; chirurgie privée potentielle ±4 000$–8 000$+ selon contexte et lieu opératoire.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">septoplastie</span><span class="pill good">septoplastie privé</span><span class="pill good">opération cloison nasale</span><span class="pill good">chirurgie cloison nasale</span><span class="pill good">déviation cloison nasale</span><span class="pill good">deviated septum surgery</span><span class="pill good">septoplasty private</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">nez bouché</span><span class="pill risky">congestion nasale</span><span class="pill risky">rhume</span><span class="pill risky">spray nasal</span><span class="pill risky">remède nez bouché</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Consultation ORL privée pour obstruction nasale chronique et évaluation de septoplastie.</p>
+    <h3>Note Google Ads</h3>
+    <p>Exact/phrase match au départ. Très bon lead chirurgical. Ajouter mots négatifs liés au rhume, remèdes maison et symptômes aigus.</p>
+  </div>
+</section>
+
+<section id="reduction-cornets" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#reduction-cornets</span></div>
+  <h2>Réduction des cornets / turbinoplastie / coblation</h2>
+  <div class="meta">
+    <span>Nez / respiration nasale</span>
+    <span>Consultation pouvant mener à procédure/chirurgie</span>
+    <span class="value">A — Forte valeur</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Nez bouché chronique</li><li>Congestion nasale persistante</li><li>Besoin fréquent de vaporisateurs nasaux</li><li>Respiration nasale difficile</li><li>Obstruction variable selon allergies ou position</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Hypertrophie des cornets nasaux, souvent liée à inflammation chronique, allergies ou rhinite.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Bon sujet car le patient cherche une solution à un problème chronique. Moins connu que la septoplastie, donc les mots-clés doivent inclure les symptômes chroniques et la procédure.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A — Forte valeur</strong> — ±350$ consultation; procédure/chirurgie potentielle ±1 500$–5 000$+ selon technique.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">réduction des cornets</span><span class="pill good">turbinoplastie</span><span class="pill good">coblation cornets</span><span class="pill good">cornets nasaux hypertrophiés</span><span class="pill good">hypertrophie cornets</span><span class="pill good">turbinate reduction</span><span class="pill good">coblation turbinate</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">nez bouché</span><span class="pill risky">allergies</span><span class="pill risky">congestion</span><span class="pill risky">vaporisateur nasal</span><span class="pill risky">rhinite</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation ORL privée pour obstruction nasale chronique et cornets nasaux hypertrophiés.</p>
+    <h3>Note Google Ads</h3>
+    <p>À regrouper avec septoplastie/obstruction nasale. Important de préqualifier “chronique”.</p>
+  </div>
+</section>
+
+<section id="septorhinoplastie-fonctionnelle" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#septorhinoplastie-fonctionnelle</span></div>
+  <h2>Septorhinoplastie fonctionnelle / valve nasale</h2>
+  <div class="meta">
+    <span>Nez / respiration nasale</span>
+    <span>Consultation pouvant mener à chirurgie</span>
+    <span class="value">A+ — Très forte valeur si offert</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Respiration nasale difficile</li><li>Obstruction après traumatisme nasal</li><li>Valve nasale qui s’affaisse</li><li>Nez bouché malgré traitements</li><li>Respiration qui s’améliore en tirant la joue/le nez</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Problèmes structurels du nez qui affectent la respiration, incluant valve nasale et cloison.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Lead de grande valeur, mais à utiliser seulement si ce service est réellement offert. Risque de confusion avec rhinoplastie esthétique.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A+ — Très forte valeur si offert</strong> — ±350$ consultation; chirurgie potentielle ±5 000$–12 000$+ selon cas.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">septorhinoplastie fonctionnelle</span><span class="pill good">valve nasale effondrée</span><span class="pill good">chirurgie valve nasale</span><span class="pill good">obstruction nasale valve</span><span class="pill good">implant nasal respiration</span><span class="pill good">Latera implant</span><span class="pill good">nasal valve collapse</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">rhinoplastie</span><span class="pill risky">chirurgie esthétique nez</span><span class="pill risky">nez croche esthétique</span><span class="pill risky">prix rhinoplastie</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation ORL privée pour obstruction nasale structurelle et respiration difficile.</p>
+    <h3>Note Google Ads</h3>
+    <p>Ajouter négatifs esthétiques si l’objectif n’est pas la chirurgie esthétique.</p>
+  </div>
+</section>
+
+<section id="chirurgie-sinus" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#chirurgie-sinus</span></div>
+  <h2>Chirurgie des sinus / FESS</h2>
+  <div class="meta">
+    <span>Sinus / sinusite chronique</span>
+    <span>Consultation pouvant mener à chirurgie</span>
+    <span class="value">A+ — Très forte valeur</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Sinusite chronique</li><li>Congestion ou pression faciale persistante</li><li>Infections répétées des sinus</li><li>Écoulement nasal chronique</li><li>Perte d’odorat associée aux sinus</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Sinusite chronique, obstruction des sinus, polypes ou inflammation persistante malgré traitement médical.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très bon lead car “chirurgie sinus” ou “chirurgie sinusite chronique” indique une recherche de solution avancée. À distinguer de “sinusite” simple, qui est souvent informatif ou aigu.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A+ — Très forte valeur</strong> — ±350$ consultation; chirurgie privée potentielle ±4 900$–8 000$+ selon complexité.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">chirurgie des sinus</span><span class="pill good">chirurgie sinus privé</span><span class="pill good">chirurgie sinusite chronique</span><span class="pill good">opération sinus</span><span class="pill good">FESS sinus</span><span class="pill good">endoscopic sinus surgery</span><span class="pill good">sinus surgery private</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">sinusite</span><span class="pill risky">infection sinus</span><span class="pill risky">mal de tête sinus</span><span class="pill risky">remède sinusite</span><span class="pill risky">antibiotique sinusite</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Consultation ORL privée pour sinusite chronique et évaluation d’options chirurgicales.</p>
+    <h3>Note Google Ads</h3>
+    <p>Très bonne catégorie “smart broad”. Prioriser mots liés à chronique/chirurgie/procédure.</p>
+  </div>
+</section>
+
+<section id="sinuplastie" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#sinuplastie</span></div>
+  <h2>Sinuplastie par ballonnet</h2>
+  <div class="meta">
+    <span>Sinus / procédure mini-invasive</span>
+    <span>Procédure spécifique / possible chirurgie</span>
+    <span class="value">A+ — Très forte valeur</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Sinusite chronique</li><li>Pression sinusale persistante</li><li>Blocage des sinus</li><li>Infections répétées</li><li>Patient cherchant une alternative moins invasive</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Certains cas de sinusite chronique ou obstruction des ostiums sinusaux, selon évaluation ORL.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Mot-clé très intéressant car le patient qui cherche “sinuplastie” connaît déjà une procédure. Le volume peut être faible, mais l’intention est forte.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A+ — Très forte valeur</strong> — ±350$ consultation; procédure potentielle ±3 000$–7 000$+ selon contexte.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">sinuplastie ballonnet</span><span class="pill good">sinuplastie par ballonnet</span><span class="pill good">ballonnet sinusite</span><span class="pill good">balloon sinuplasty</span><span class="pill good">balloon sinuplasty private</span><span class="pill good">sinuplasty Montreal</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">sinusite</span><span class="pill risky">lavage sinus</span><span class="pill risky">remède naturel sinus</span><span class="pill risky">douleur sinus</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation ORL privée pour savoir si la sinuplastie par ballonnet peut être indiquée.</p>
+    <h3>Note Google Ads</h3>
+    <p>Ne pas promettre que tout patient est candidat. Mot-clé niche mais excellent.</p>
+  </div>
+</section>
+
+<section id="clarifix" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#clarifix</span></div>
+  <h2>ClariFix / cryothérapie nasale</h2>
+  <div class="meta">
+    <span>Rhinite chronique</span>
+    <span>Procédure spécifique / consultation spécialisée</span>
+    <span class="value">A — Forte valeur</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Nez qui coule tout le temps</li><li>Rhinite chronique</li><li>Écoulement nasal non allergique</li><li>Besoin constant de mouchoirs</li><li>Symptômes persistants malgré vaporisateurs</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Certains cas de rhinite chronique, notamment rhinorrhée persistante, selon évaluation.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Le nom ClariFix peut être recherché par des patients déjà informés. “Nez qui coule tout le temps” est plus large, mais pertinent si landing page claire.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A — Forte valeur</strong> — ±350$ consultation; procédure potentielle ±1 500$–4 000$+ selon tarification.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">ClariFix</span><span class="pill good">clarifix Montréal</span><span class="pill good">cryothérapie nasale</span><span class="pill good">rhinite chronique traitement</span><span class="pill good">nez qui coule tout le temps</span><span class="pill good">chronic rhinitis treatment</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">nez qui coule</span><span class="pill risky">rhume</span><span class="pill risky">allergie saisonnière</span><span class="pill risky">remède nez qui coule</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Solution ORL privée pour rhinite chronique et écoulement nasal persistant.</p>
+    <h3>Note Google Ads</h3>
+    <p>Peut être testé avec mots de symptômes si “chronique/persistant” est présent.</p>
+  </div>
+</section>
+
+<section id="polypes-nasaux" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#polypes-nasaux</span></div>
+  <h2>Polypes nasaux / polypectomie</h2>
+  <div class="meta">
+    <span>Sinus / polypes</span>
+    <span>Consultation pouvant mener à chirurgie</span>
+    <span class="value">A — Forte valeur</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Nez bouché chronique</li><li>Perte d’odorat</li><li>Sinusite chronique</li><li>Respiration nasale difficile</li><li>Écoulement nasal persistant</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Polypes nasaux ou polypose nasale, souvent liée à inflammation chronique des sinus.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très ORL-spécifique. Le patient qui recherche “polypes nasaux chirurgie” est plus avancé que quelqu’un qui cherche seulement “nez bouché”.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A — Forte valeur</strong> — ±350$ consultation; chirurgie/procédure potentielle ±3 000$–8 000$+.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">polypes nasaux</span><span class="pill good">polype nez</span><span class="pill good">chirurgie polypes nasaux</span><span class="pill good">polypectomie nasale</span><span class="pill good">polypose nasale</span><span class="pill good">nasal polyps surgery</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">polype</span><span class="pill risky">nez bouché</span><span class="pill risky">perte odorat</span><span class="pill risky">sinus</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation ORL privée pour polypes nasaux, sinusite chronique et options de traitement.</p>
+    <h3>Note Google Ads</h3>
+    <p>Bonne passerelle vers chirurgie des sinus/FESS.</p>
+  </div>
+</section>
+
+<section id="trompe-eustache" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#trompe-eustache</span></div>
+  <h2>Dilatation de la trompe d’Eustache</h2>
+  <div class="meta">
+    <span>Oreille / pression / oreille bouchée</span>
+    <span>Procédure spécifique / consultation pouvant mener à procédure</span>
+    <span class="value">A+ — Très forte valeur niche</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Oreille bouchée chronique</li><li>Pression dans l’oreille</li><li>Sensation d’oreille pleine</li><li>Difficulté à équilibrer la pression</li><li>Symptômes en avion ou changements d’altitude</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Dysfonction de la trompe d’Eustache, lorsque confirmé par évaluation ORL.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très bonne intention quand la recherche mentionne la trompe d’Eustache ou la dilatation. “Oreille bouchée” seule est trop large.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A+ — Très forte valeur niche</strong> — ±350$ consultation; procédure potentielle ±2 500$–6 000$+.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">dilatation trompe d’Eustache</span><span class="pill good">trompe d’eustache bouchée</span><span class="pill good">trompe eustache bouchée</span><span class="pill good">dysfonction trompe d’Eustache</span><span class="pill good">Eustachian tube dilation</span><span class="pill good">blocked eustachian tube</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">oreille bouchée</span><span class="pill risky">eau dans l’oreille</span><span class="pill risky">bouchon cire</span><span class="pill risky">rhume oreille bouchée</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Consultation ORL privée pour oreille bouchée chronique et dysfonction de la trompe d’Eustache.</p>
+    <h3>Note Google Ads</h3>
+    <p>Niche possiblement peu compétitif. Garder les mots “chronique” ou “trompe d’Eustache”.</p>
+  </div>
+</section>
+
+<section id="myringotomie-tubes" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#myringotomie-tubes</span></div>
+  <h2>Myringotomie / tubes transtympaniques</h2>
+  <div class="meta">
+    <span>Oreille / liquide / infections</span>
+    <span>Consultation pouvant mener à procédure</span>
+    <span class="value">B à A — Selon adulte/pédiatrique et offre réelle</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Liquide derrière le tympan</li><li>Pression ou oreille bouchée persistante</li><li>Otites répétées</li><li>Baisse d’audition liée à liquide</li><li>Épanchement de l’oreille moyenne</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Épanchement de l’oreille moyenne, otites récidivantes ou problème de ventilation de l’oreille moyenne.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Utile si la clinique offre réellement ce service en privé. Peut être très pertinent pour les parents si pédiatrie privée offerte, mais attention au cadrage.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>B à A — Selon adulte/pédiatrique et offre réelle</strong> — ±350$ consultation; procédure potentielle ±1 000$–3 000$+.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">myringotomie</span><span class="pill good">tubes dans les oreilles</span><span class="pill good">pose tubes oreilles</span><span class="pill good">tube transtympanique</span><span class="pill good">liquide derrière tympan</span><span class="pill good">ear tubes private</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">otite</span><span class="pill risky">mal oreille</span><span class="pill risky">oreille bouchée</span><span class="pill risky">bébé otite</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation ORL privée pour liquide derrière le tympan, otites répétées ou besoin de tubes.</p>
+    <h3>Note Google Ads</h3>
+    <p>À valider selon services réellement offerts et âge des patients ciblés.</p>
+  </div>
+</section>
+
+<section id="nettoyage-oreille" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#nettoyage-oreille</span></div>
+  <h2>Nettoyage d’oreille sous microscope / bouchon de cérumen</h2>
+  <div class="meta">
+    <span>Oreille / procédure mineure</span>
+    <span>Consultation/procédure mineure</span>
+    <span class="value">C — Valeur plus basse mais conversion facile</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Oreille bouchée</li><li>Baisse d’audition soudaine liée au bouchon</li><li>Sensation de pression</li><li>Inconfort après tentative de nettoyage</li><li>Besoin de nettoyage sécuritaire</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Bouchon de cérumen ou besoin de nettoyage sous microscope.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très recherché et peut convertir rapidement, mais ticket plus faible. Ne doit pas voler le budget des catégories chirurgicales.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>C — Valeur plus basse mais conversion facile</strong> — Souvent ±100$–350$+ selon tarification; peut mener à consultation/audiologie si autre problème.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">nettoyage oreille microscope</span><span class="pill good">bouchon de cire oreille</span><span class="pill good">cérumen bouchon</span><span class="pill good">nettoyage oreille ORL</span><span class="pill good">ear wax removal microscope</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">oreille bouchée</span><span class="pill risky">remède bouchon cire</span><span class="pill risky">huile oreille</span><span class="pill risky">pharmacie bouchon cire</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Nettoyage d’oreille sous microscope en clinique ORL privée.</p>
+    <h3>Note Google Ads</h3>
+    <p>Budget bas ou campagne séparée. Bon pour remplir l’horaire, moins pour croissance chirurgicale.</p>
+  </div>
+</section>
+
+<section id="thyroide" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#thyroide</span></div>
+  <h2>Nodule thyroïdien / échographie thyroïdienne</h2>
+  <div class="meta">
+    <span>Thyroïde / cou</span>
+    <span>Diagnostic spécialisé / consultation pouvant mener à procédure</span>
+    <span class="value">A — Forte valeur</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Nodule trouvé à l’examen ou imagerie</li><li>Bosse dans le cou</li><li>Suivi de nodule thyroïdien</li><li>Besoin d’échographie plus rapide</li><li>Inquiétude après résultat médical</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Évaluation de nodules thyroïdiens et orientation diagnostique.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très médical, très ORL/endocrino-adjacent. Les patients peuvent chercher une voie privée pour éviter l’attente diagnostique.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A — Forte valeur</strong> — ±350$ consultation; échographie/biopsie/suivi pouvant totaliser ±500$–1 500$+; peut mener à RFA ou chirurgie selon cas.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">nodule thyroïdien</span><span class="pill good">échographie thyroïde privé</span><span class="pill good">échographie thyroïdienne</span><span class="pill good">thyroid ultrasound private</span><span class="pill good">nodule thyroide</span><span class="pill good">bosse thyroïde</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">thyroïde symptômes</span><span class="pill risky">hypothyroïdie</span><span class="pill risky">hyperthyroïdie</span><span class="pill risky">TSH</span><span class="pill risky">régime thyroïde</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Accès privé à l’évaluation de nodules thyroïdiens et échographie spécialisée.</p>
+    <h3>Note Google Ads</h3>
+    <p>Ne pas cibler trop large autour de la thyroïde générale; rester nodule/échographie/biopsie.</p>
+  </div>
+</section>
+
+<section id="biopsie-thyroide" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#biopsie-thyroide</span></div>
+  <h2>Biopsie / cytoponction thyroïdienne</h2>
+  <div class="meta">
+    <span>Thyroïde / diagnostic</span>
+    <span>Procédure diagnostique</span>
+    <span class="value">A+ — Très forte valeur diagnostique</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Nodule à investiguer</li><li>Demande de biopsie après échographie</li><li>Résultat suspect ou indéterminé</li><li>Besoin d’un rendez-vous plus rapide</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Investigation de nodules thyroïdiens lorsque la biopsie est indiquée.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très hautement qualifié. Le patient qui cherche biopsie/cytoponction est souvent rendu à une étape concrète du parcours médical.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A+ — Très forte valeur diagnostique</strong> — ±350$ consultation + biopsie/cytoponction; potentiel ±800$–2 000$+ selon tarification et suivi.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">biopsie thyroïde privé</span><span class="pill good">biopsie thyroïdienne</span><span class="pill good">cytoponction thyroïde</span><span class="pill good">FNA thyroid private</span><span class="pill good">thyroid biopsy private</span><span class="pill good">ponction thyroïde</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">cancer thyroïde</span><span class="pill risky">symptômes cancer</span><span class="pill risky">survie cancer thyroïde</span><span class="pill risky">forum cancer thyroïde</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Biopsie/cytoponction thyroïdienne en privé lorsque l’évaluation médicale l’indique.</p>
+    <h3>Note Google Ads</h3>
+    <p>Très bon lead. Landing page doit expliquer le processus, sans créer de panique ni promettre un diagnostic.</p>
+  </div>
+</section>
+
+<section id="radiofrequence-thyroide" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#radiofrequence-thyroide</span></div>
+  <h2>Radiofréquence des nodules thyroïdiens</h2>
+  <div class="meta">
+    <span>Thyroïde / procédure spécialisée</span>
+    <span>Procédure spécialisée à très forte valeur</span>
+    <span class="value">A+ — Très forte valeur</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Nodule thyroïdien bénin volumineux</li><li>Gêne au cou</li><li>Nodule visible ou compressif</li><li>Patient cherchant alternative à chirurgie</li><li>Suivi déjà fait ailleurs</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Certains nodules thyroïdiens bénins sélectionnés, après confirmation médicale appropriée.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très niche mais possiblement excellent car peu de compétition et grande valeur par patient. Demande une landing page très claire.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A+ — Très forte valeur</strong> — Potentiellement très élevé; consultation + imagerie + procédure spécialisée pouvant atteindre plusieurs milliers de dollars selon cas.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">radiofréquence nodule thyroïdien</span><span class="pill good">ablation nodule thyroïde</span><span class="pill good">RFA thyroïde</span><span class="pill good">thyroid RFA</span><span class="pill good">thyroid nodule radiofrequency</span><span class="pill good">radiofrequency ablation thyroid</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">thyroïde</span><span class="pill risky">nodule</span><span class="pill risky">cancer thyroïde</span><span class="pill risky">chirurgie thyroïde prix</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation privée pour savoir si un nodule thyroïdien peut être traité par radiofréquence.</p>
+    <h3>Note Google Ads</h3>
+    <p>À cibler précisément. Très forte valeur, faible volume. Ne pas mélanger avec mots-clés thyroïde génériques.</p>
+  </div>
+</section>
+
+<section id="test-moleculaire-thyroide" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#test-moleculaire-thyroide</span></div>
+  <h2>Test moléculaire pour nodule/cancer de la thyroïde</h2>
+  <div class="meta">
+    <span>Thyroïde / diagnostic avancé</span>
+    <span>Diagnostic spécialisé</span>
+    <span class="value">A — Forte valeur, niche</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Biopsie indéterminée</li><li>Nodule thyroïdien suspect</li><li>Besoin d’information diagnostique supplémentaire</li><li>Patient cherchant une décision plus claire</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Aide à la décision dans certains nodules thyroïdiens avec résultats cytologiques indéterminés.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très spécialisé. Le patient est souvent déjà avancé dans son parcours médical. Volume faible, intention forte.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A — Forte valeur, niche</strong> — Consultation + test diagnostique spécialisé; potentiel à valider selon coût du test et facturation.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">test moléculaire thyroïde</span><span class="pill good">test moléculaire nodule thyroïdien</span><span class="pill good">thyroid molecular testing</span><span class="pill good">biopsie thyroïde indéterminée</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">cancer thyroïde</span><span class="pill risky">test cancer</span><span class="pill risky">symptômes cancer thyroïde</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation spécialisée privée pour tests avancés de nodule thyroïdien lorsque pertinent.</p>
+    <h3>Note Google Ads</h3>
+    <p>À utiliser seulement si service disponible et parcours clair.</p>
+  </div>
+</section>
+
+<section id="grains-de-beaute" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#grains-de-beaute</span></div>
+  <h2>Grains de beauté / lésions cutanées / acrochordons</h2>
+  <div class="meta">
+    <span>Peau / chirurgie mineure</span>
+    <span>Procédure mineure</span>
+    <span class="value">C — Valeur moyenne, volume possible</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Grain de beauté dérangeant</li><li>Lésion cutanée à enlever</li><li>Acrochordon/tétine de peau</li><li>Lésion sur visage/cou</li><li>Besoin d’un retrait rapide</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Lésions cutanées bénignes ou à évaluer, acrochordons, grains de beauté selon indication médicale.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Bon service privé, mais moins stratégique qu’une chirurgie ORL lourde. Peut être rentable avec bon contrôle de budget.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>C — Valeur moyenne, volume possible</strong> — ±300$–1 500$+ selon consultation, nombre de lésions, technique et pathologie.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">enlever grain de beauté</span><span class="pill good">retrait grain de beauté</span><span class="pill good">enlever acrochordon</span><span class="pill good">tétine de peau</span><span class="pill good">lésion cutanée retrait</span><span class="pill good">mole removal private</span><span class="pill good">skin tag removal</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">grain de beauté cancer</span><span class="pill risky">image grain de beauté</span><span class="pill risky">verrue</span><span class="pill risky">bouton peau</span><span class="pill risky">dermatologue gratuit</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation et retrait privé de certaines lésions cutanées, grains de beauté ou acrochordons.</p>
+    <h3>Note Google Ads</h3>
+    <p>Campagne séparée avec budget contrôlé. Peut fonctionner si peu de compétition locale.</p>
+  </div>
+</section>
+
+<section id="cicatrices" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#cicatrices</span></div>
+  <h2>Révision de cicatrices</h2>
+  <div class="meta">
+    <span>Peau / chirurgie mineure</span>
+    <span>Procédure mineure / esthétique-fonctionnelle</span>
+    <span class="value">C à B — Selon complexité</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Cicatrice visible</li><li>Cicatrice au visage/cou</li><li>Cicatrice gênante</li><li>Cicatrice après chirurgie ou accident</li><li>Besoin d’amélioration esthétique ou fonctionnelle</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Certaines cicatrices qui peuvent être améliorées chirurgicalement ou par procédure.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Peut générer des procédures payantes, mais intention parfois esthétique et sensible au prix.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>C à B — Selon complexité</strong> — ±500$–2 500$+ selon consultation, localisation, complexité et technique.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">révision cicatrice</span><span class="pill good">correction cicatrice</span><span class="pill good">cicatrice visage</span><span class="pill good">chirurgie cicatrice</span><span class="pill good">scar revision private</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">crème cicatrice</span><span class="pill risky">cicatrice maison</span><span class="pill risky">faire disparaître cicatrice</span><span class="pill risky">remède cicatrice</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation privée pour révision ou correction de cicatrice lorsque possible.</p>
+    <h3>Note Google Ads</h3>
+    <p>Ajouter négatifs autour des crèmes/remèdes maison si nécessaire.</p>
+  </div>
+</section>
+
+<section id="kystes-lipomes" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#kystes-lipomes</span></div>
+  <h2>Kystes, lipomes et masses superficielles</h2>
+  <div class="meta">
+    <span>Peau / masses superficielles</span>
+    <span>Procédure mineure / consultation</span>
+    <span class="value">B — Valeur correcte</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Bosse sous la peau</li><li>Kyste qui grossit</li><li>Lipome gênant</li><li>Masse superficielle douloureuse ou incommodante</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Kystes sébacés, lipomes ou masses superficielles selon évaluation.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Plus qualifié que “bosse” seule si le patient cherche kyste/lipome/retrait. Bon service privé accessible.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>B — Valeur correcte</strong> — ±350$ consultation; exérèse potentielle ±500$–2 000$+ selon complexité.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">exérèse kyste</span><span class="pill good">kyste sébacé retrait</span><span class="pill good">lipome retrait</span><span class="pill good">enlever lipome</span><span class="pill good">bosse sous la peau clinique privée</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">bosse</span><span class="pill risky">kyste maison</span><span class="pill risky">percer kyste</span><span class="pill risky">lipome dangereux</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation et retrait privé de kystes, lipomes ou masses superficielles.</p>
+    <h3>Note Google Ads</h3>
+    <p>Éviter les mots trop vagues comme “bosse” sans qualification.</p>
+  </div>
+</section>
+
+<section id="amygdales-adenoides" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#amygdales-adenoides</span></div>
+  <h2>Amygdalectomie / adénoïdectomie</h2>
+  <div class="meta">
+    <span>Gorge / amygdales</span>
+    <span>Consultation pouvant mener à chirurgie</span>
+    <span class="value">A — Forte valeur si offert</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Amygdales volumineuses</li><li>Infections répétées</li><li>Ronflement lié aux amygdales</li><li>Apnée ou obstruction</li><li>Mauvaise qualité de sommeil</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Amygdales/adénoïdes problématiques, infections récurrentes ou obstruction selon évaluation.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très bon si offert en privé, surtout chez adultes ou cas de ronflement. Attention si pédiatrie non disponible ou long délai public.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A — Forte valeur si offert</strong> — ±350$ consultation; chirurgie potentielle ±2 500$–6 000$+ selon contexte.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">amygdalectomie</span><span class="pill good">ablation des amygdales</span><span class="pill good">chirurgie amygdales adulte</span><span class="pill good">adénoïdectomie</span><span class="pill good">opération végétations</span><span class="pill good">tonsillectomy private</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">mal de gorge</span><span class="pill risky">amygdalite</span><span class="pill risky">streptocoque</span><span class="pill risky">remède amygdales</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation ORL privée pour amygdales problématiques, infections récurrentes ou obstruction.</p>
+    <h3>Note Google Ads</h3>
+    <p>Valider pédiatrique/adulte avant lancement.</p>
+  </div>
+</section>
+
+<section id="cordes-vocales" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#cordes-vocales</span></div>
+  <h2>Cordes vocales / laryngoscopie / microchirurgie</h2>
+  <div class="meta">
+    <span>Voix / larynx</span>
+    <span>Consultation spécialisée pouvant mener à procédure</span>
+    <span class="value">B à A — Selon procédure offerte</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Voix enrouée chronique</li><li>Dysphonie persistante</li><li>Perte de voix répétée</li><li>Lésion ou polype des cordes vocales</li><li>Professionnel de la voix inquiet</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Lésions des cordes vocales, nodules/polypes, dysphonie persistante ou besoin d’évaluation laryngée.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Très ORL-spécifique si “chronique” ou “cordes vocales” est présent. “Voix enrouée” seule peut être plus large.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>B à A — Selon procédure offerte</strong> — ±350$ consultation; procédure/biopsie/chirurgie potentielle ±1 500$–5 000$+.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">voix enrouée chronique</span><span class="pill good">dysphonie chronique</span><span class="pill good">lésion corde vocale</span><span class="pill good">polype corde vocale</span><span class="pill good">chirurgie cordes vocales</span><span class="pill good">laryngoscopie privée</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">voix enrouée</span><span class="pill risky">perte de voix</span><span class="pill risky">laryngite</span><span class="pill risky">mal gorge</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation ORL privée de la voix et des cordes vocales.</p>
+    <h3>Note Google Ads</h3>
+    <p>Mettre l’accent sur chronique/persistant pour éviter les rhumes/laryngites aiguës.</p>
+  </div>
+</section>
+
+<section id="parotide-glandes-salivaires" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#parotide-glandes-salivaires</span></div>
+  <h2>Parotide / glandes salivaires / masses cervicales</h2>
+  <div class="meta">
+    <span>Cou / glandes salivaires</span>
+    <span>Consultation spécialisée pouvant mener à imagerie/biopsie/chirurgie</span>
+    <span class="value">A — Forte valeur, mais à cadrer prudemment</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Masse parotide</li><li>Glande salivaire gonflée</li><li>Bosse dans le cou persistante</li><li>Douleur ou gonflement à la mâchoire</li><li>Masse cervicale à évaluer</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Masse de la parotide, problème de glandes salivaires, kystes ou masses cervicales.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Le terme “bosse dans le cou” est large et anxiogène; “masse parotide” ou “glande salivaire gonflée” est beaucoup plus qualifié.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A — Forte valeur, mais à cadrer prudemment</strong> — ±350$ consultation; imagerie/biopsie/procédure ou chirurgie potentielle ±1 000$–8 000$+ selon cas.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">masse parotide</span><span class="pill good">tumeur parotide</span><span class="pill good">chirurgie parotide</span><span class="pill good">parotidectomie</span><span class="pill good">glande salivaire gonflée</span><span class="pill good">masse au cou ORL</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">bosse dans le cou</span><span class="pill risky">cancer cou</span><span class="pill risky">ganglion</span><span class="pill risky">lymphome symptômes</span><span class="pill risky">forum cancer</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation ORL privée pour masse de la parotide, glande salivaire ou masse cervicale persistante.</p>
+    <h3>Note Google Ads</h3>
+    <p>Éviter les promesses. Landing page rassurante, orientée évaluation médicale rapide.</p>
+  </div>
+</section>
+
+<section id="ronflement-apnee" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#ronflement-apnee</span></div>
+  <h2>Ronflement / apnée du sommeil / chirurgie</h2>
+  <div class="meta">
+    <span>Sommeil / respiration</span>
+    <span>Consultation pouvant mener à test, CPAP ou chirurgie</span>
+    <span class="value">A — Forte valeur</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Ronflement sévère</li><li>Arrêts respiratoires rapportés</li><li>Sommeil non réparateur</li><li>Fatigue diurne</li><li>Échec ou intolérance CPAP</li><li>Obstruction nasale liée au sommeil</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Ronflement, suspicion d’apnée du sommeil, obstruction anatomique contribuant au sommeil.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>“Ronflement” seul est trop large; “chirurgie ronflement”, “apnée du sommeil chirurgie” ou “UPPP” sont plus qualifiés.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A — Forte valeur</strong> — ±350$ consultation; test sommeil/CPAP/procédures/chirurgie peuvent augmenter la valeur totale.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">chirurgie ronflement</span><span class="pill good">opération ronflement</span><span class="pill good">chirurgie apnée du sommeil</span><span class="pill good">traitement ronflement privé</span><span class="pill good">sleep apnea surgery private</span><span class="pill good">snoring surgery</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">ronflement</span><span class="pill risky">remède ronflement</span><span class="pill risky">appareil ronflement</span><span class="pill risky">bandelette nasale</span><span class="pill risky">apnée sommeil symptômes</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation ORL privée pour ronflement sévère, apnée du sommeil et options de traitement.</p>
+    <h3>Note Google Ads</h3>
+    <p>Peut mener à CPAP/test sommeil ou chirurgie. Bien séparer chirurgie vs CPAP/test.</p>
+  </div>
+</section>
+
+<section id="uppp" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#uppp</span></div>
+  <h2>UPPP / chirurgie du voile du palais</h2>
+  <div class="meta">
+    <span>Sommeil / chirurgie</span>
+    <span>Procédure chirurgicale spécifique</span>
+    <span class="value">A+ — Très forte valeur si offert</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Ronflement sévère</li><li>Apnée du sommeil</li><li>Obstruction au niveau du palais/gorge</li><li>Patient cherchant une option chirurgicale</li><li>Intolérance ou échec d’autres traitements</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Certains cas de ronflement ou apnée liés à obstruction du voile du palais/gorge, selon évaluation.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Le patient qui cherche UPPP est très avancé. Volume faible mais forte intention.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>A+ — Très forte valeur si offert</strong> — ±350$ consultation; chirurgie potentielle ±3 000$–8 000$+ selon contexte.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">UPPP</span><span class="pill good">uvulopalatopharyngoplastie</span><span class="pill good">chirurgie UPPP</span><span class="pill good">UPPP apnée sommeil</span><span class="pill good">UPPP snoring surgery</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">ronflement</span><span class="pill risky">apnée sommeil</span><span class="pill risky">luette gonflée</span><span class="pill risky">opération luette avis</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Évaluation ORL privée pour savoir si une chirurgie du ronflement/apnée peut être indiquée.</p>
+    <h3>Note Google Ads</h3>
+    <p>Exact match/phrase. Très qualifié, mais expliquer que l’indication dépend de l’évaluation.</p>
+  </div>
+</section>
+
+<section id="allergies" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#allergies</span></div>
+  <h2>Tests d’allergies / tests cutanés / épicutanés</h2>
+  <div class="meta">
+    <span>Allergies</span>
+    <span>Diagnostic / consultation médicale</span>
+    <span class="value">B — Valeur moyenne à bonne</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Rhinite allergique</li><li>Éternuements</li><li>Congestion nasale chronique</li><li>Démangeaisons</li><li>Écoulement nasal saisonnier ou persistant</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Identification d’allergènes potentiels et orientation thérapeutique.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Recherche très fréquente mais parfois large. Meilleur si “test allergie privé/Montréal/cutané” plutôt que “allergie” seul.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>B — Valeur moyenne à bonne</strong> — ±350$ consultation + tests; potentiel ±500$–1 200$+ selon parcours.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">test allergie privé</span><span class="pill good">test allergie cutané</span><span class="pill good">test épicutané</span><span class="pill good">patch test allergie</span><span class="pill good">prick test allergie</span><span class="pill good">allergy testing private</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">allergie</span><span class="pill risky">symptômes allergie</span><span class="pill risky">allergie pollen</span><span class="pill risky">antihistaminique</span><span class="pill risky">remède allergie</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Tests d’allergies en clinique privée pour symptômes persistants.</p>
+    <h3>Note Google Ads</h3>
+    <p>Budget contrôlé. Bon si lié à rhinite/ORL, moins bon si trop général.</p>
+  </div>
+</section>
+
+<section id="spirometrie" class="card">
+  <div class="anchor-line"><a href="#top">↑ haut</a><span>https://binaural.ca/google-ads/#spirometrie</span></div>
+  <h2>Spirométrie / exploration fonctionnelle respiratoire</h2>
+  <div class="meta">
+    <span>Respiration / tests</span>
+    <span>Diagnostic / test médical</span>
+    <span class="value">B — Valeur moyenne</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h3>Symptômes / problème patient</h3>
+      <ul><li>Essoufflement</li><li>Toux chronique</li><li>Suspicion d’asthme</li><li>Besoin de test respiratoire</li><li>Suivi respiratoire</li></ul>
+    </div>
+    <div>
+      <h3>Ce que ça traite</h3>
+      <p>Évaluation de la fonction pulmonaire dans certains contextes respiratoires.</p>
+      <h3>Pourquoi c’est important</h3>
+      <p>Utile mais pas purement ORL. À garder séparé pour ne pas diluer les campagnes de chirurgies.</p>
+    </div>
+  </div>
+  <div class="business">
+    <h3>Valeur business approximative</h3>
+    <p><strong>B — Valeur moyenne</strong> — ±150$–500$+ selon consultation/test; peut mener à parcours respiratoire ou sommeil.</p>
+    <p class="small">Ces montants sont des ordres de grandeur pour aider la stratégie Google Ads. À valider avec la tarification réelle, le plateau technique, l’anesthésie, les honoraires et les coûts opératoires.</p>
+  </div>
+  <h3>Bons mots-clés à tester</h3>
+  <div class="pills"><span class="pill good">spirométrie privé</span><span class="pill good">test fonction pulmonaire privé</span><span class="pill good">test respiratoire privé</span><span class="pill good">test asthme privé</span><span class="pill good">pulmonary function test private</span></div>
+  <h3>Mots-clés risqués / trop informatifs</h3>
+  <div class="pills"><span class="pill risky">toux</span><span class="pill risky">asthme</span><span class="pill risky">essoufflement</span><span class="pill risky">bronchite</span><span class="pill risky">pneumonie</span></div>
+  <div class="adbox">
+    <h3>Angle annonce / landing page</h3>
+    <p>Accès privé à la spirométrie / test de fonction respiratoire.</p>
+    <h3>Note Google Ads</h3>
+    <p>Campagne séparée ou budget limité; bon service complémentaire.</p>
+  </div>
+</section>
+
+    </div>
+  </div>
+</main>
+</body>
+</html>
